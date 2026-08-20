@@ -170,7 +170,6 @@ export const HeroScene: React.FC<HeroSceneProps> = ({
           disablePictureInPicture
           controls={false}
           className="w-full h-full object-cover object-center transform-gpu pointer-events-none brightness-[0.92] contrast-[1.04]"
-          poster="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2000&auto=format&fit=crop"
           aria-hidden="true"
         >
           <source src={HERO_BG_VIDEO_LOCAL} type="video/mp4" />

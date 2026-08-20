@@ -93,7 +93,6 @@ export const AksoyLogo: React.FC<AksoyLogoProps> = ({
           disablePictureInPicture
           controls={false}
           className="w-full h-full object-cover rounded-[10px] sm:rounded-[14px] block pointer-events-none"
-          poster={LOGO_POSTER_IMG}
           aria-label="Aksoy Jewels 4K Video Logo"
         >
           {/* HD local stream for instant loading */}
@@ -101,12 +100,6 @@ export const AksoyLogo: React.FC<AksoyLogoProps> = ({
           {/* Direct 4K full sources */}
           <source src={LOGO_VIDEO_4K_REMOTE} type="video/mp4" />
           <source src={LOGO_VIDEO_4K_LOCAL} type="video/mp4" />
-          {/* Fallback image */}
-          <img 
-            src={LOGO_POSTER_IMG} 
-            alt="Aksoy Jewels" 
-            className="w-full h-full object-cover rounded-lg sm:rounded-xl block"
-          />
         </video>
       </div>
     </div>
