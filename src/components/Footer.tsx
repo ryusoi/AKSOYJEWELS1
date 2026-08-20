@@ -13,6 +13,7 @@ import {
   Award
 } from 'lucide-react';
 import { AksoyLogo } from './AksoyLogo';
+import { ParallaxVideoBanner } from './ParallaxVideoBanner';
 import { Language, Theme, Currency, PageRoute } from '../types';
 import { TRANSLATIONS } from '../data/translations';
 
@@ -55,6 +56,15 @@ export const Footer: React.FC<FooterProps> = ({
         isLight ? 'bg-[#f4efe6] text-zinc-900' : 'bg-[#050B14] text-[#E0D8C0]'
       }`}
     >
+      {/* Fullscreen Video Background above Privilege Society (Unfiltered, Muted, Looping, Parallax) */}
+      <div className="max-w-7xl mx-auto mb-14">
+        <ParallaxVideoBanner
+          videoLocal="/videos/gold_ring_aksoy.mp4"
+          videoRemote="https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/GOLD%20RING%20AKSOY.mp4"
+          ariaLabel="Gold Ring Aksoy Showcase"
+        />
+      </div>
+
       {/* Top Newsletter & Privilege Club Banner */}
       <div className="max-w-7xl mx-auto pb-14 border-b border-[rgba(224,216,192,0.12)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div className="lg:col-span-6 space-y-2 text-center lg:text-left">

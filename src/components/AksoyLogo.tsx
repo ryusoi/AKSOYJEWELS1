@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import localPosterAsset from '../assets/images/aksoy_logo_4k_poster.jpg';
 
 interface AksoyLogoProps {
@@ -22,6 +22,40 @@ export const AksoyLogo: React.FC<AksoyLogoProps> = ({
   transparent = true,
   onClick
 }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.preload = 'auto';
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {});
+            }
+          } else {
+            if (!video.paused) {
+              video.pause();
+            }
+          }
+        });
+      },
+      {
+        threshold: [0, 0.1]
+      }
+    );
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const getSizingClasses = () => {
     switch (variant) {
       case 'header':
@@ -51,10 +85,11 @@ export const AksoyLogo: React.FC<AksoyLogoProps> = ({
       {/* Transparent Golden box frame with round edges */}
       <div className={`relative ${getSizingClasses()} rounded-xl sm:rounded-2xl border-2 border-[#C5A059] ${transparent ? 'bg-transparent' : 'bg-black/30'} shadow-[0_0_18px_rgba(197,160,89,0.45)] flex items-center justify-center overflow-hidden`}>
         <video 
-          autoPlay
+          ref={videoRef}
           loop
           muted
           playsInline
+          preload="auto"
           disablePictureInPicture
           controls={false}
           className="w-full h-full object-cover rounded-[10px] sm:rounded-[14px] block pointer-events-none"
@@ -77,4 +112,5 @@ export const AksoyLogo: React.FC<AksoyLogoProps> = ({
     </div>
   );
 };
+
 

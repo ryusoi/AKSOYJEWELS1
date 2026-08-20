@@ -19,6 +19,7 @@ import { ProductCard } from './components/ProductCard';
 import { ProductModal } from './components/ProductModal';
 import { CartDrawer } from './components/CartDrawer';
 import { AIJewelryAssistant } from './components/AIJewelryAssistant';
+import { ParallaxVideoBanner } from './components/ParallaxVideoBanner';
 import { Footer } from './components/Footer';
 import { Subpages } from './components/Subpages';
 import confetti from 'canvas-confetti';
@@ -275,6 +276,15 @@ export function App() {
               currentTheme={currentTheme}
               onNavigate={handleNavigate}
             />
+
+            {/* Fullscreen Video Background above New Arrivals (Unfiltered, Muted, Looping, Parallax) */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-8">
+              <ParallaxVideoBanner
+                videoLocal="/videos/blue_ring_aksoy.mp4"
+                videoRemote="https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/BLUE%20RING%20AKSOY.mp4"
+                ariaLabel="Blue Ring Aksoy Showcase"
+              />
+            </section>
 
             {/* New Arrivals Grid */}
             <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">

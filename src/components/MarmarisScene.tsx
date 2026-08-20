@@ -4,8 +4,8 @@ import { Language, Theme, PageRoute } from '../types';
 import { TRANSLATIONS } from '../data/translations';
 
 // Video constants
-export const MARMARIS_BG_VIDEO_REMOTE = 'https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/flower%20open%20diomand%20ring.mp4';
-export const MARMARIS_BG_VIDEO_LOCAL = '/videos/flower_open_diamond_ring.mp4';
+export const MARMARIS_BG_VIDEO_REMOTE = 'https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/PINK%20FLOWER%20AKSOY%201.mp4';
+export const MARMARIS_BG_VIDEO_LOCAL = '/videos/pink_flower_aksoy_1.mp4';
 
 interface MarmarisSceneProps {
   currentLanguage: Language;
@@ -22,6 +22,7 @@ export const MarmarisScene: React.FC<MarmarisSceneProps> = ({
   const isLight = currentTheme === 'light';
 
   const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [parallaxOffset, setParallaxOffset] = useState<number>(0);
 
   // Smooth scroll parallax calculation
@@ -56,6 +57,41 @@ export const MarmarisScene: React.FC<MarmarisSceneProps> = ({
     };
   }, []);
 
+  // IntersectionObserver: Play when entering viewport, pause when offscreen
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section) return;
+
+    video.preload = 'auto';
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {});
+            }
+          } else {
+            if (!video.paused) {
+              video.pause();
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '200px 0px 200px 0px',
+        threshold: [0, 0.1]
+      }
+    );
+
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section 
       ref={sectionRef}
@@ -79,10 +115,11 @@ export const MarmarisScene: React.FC<MarmarisSceneProps> = ({
         }}
       >
         <video 
-          autoPlay
+          ref={videoRef}
           loop
           muted
           playsInline
+          preload="auto"
           disablePictureInPicture
           controls={false}
           className="w-auto h-[480px] sm:h-[600px] lg:h-[680px] max-w-full object-contain block opacity-100 pointer-events-none transform-gpu"

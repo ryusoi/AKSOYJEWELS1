@@ -90,6 +90,39 @@ export const HeroScene: React.FC<HeroSceneProps> = ({
     };
   }, []);
 
+  // Optimize video play/pause on visibility
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.preload = 'auto';
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {});
+            }
+          } else {
+            if (!video.paused) {
+              video.pause();
+            }
+          }
+        });
+      },
+      {
+        threshold: [0, 0.1]
+      }
+    );
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   // Toggle Sound safely
   const toggleSound = () => {
     if (!audioRef.current) return;

@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { ShieldCheck, Award, Users, Gem, Clock, ArrowRight } from 'lucide-react';
 import { Language, Theme, PageRoute } from '../types';
 import { TRANSLATIONS } from '../data/translations';
+import { ParallaxVideoBanner } from './ParallaxVideoBanner';
 
-// Platinum Ring Video Constants
-export const PLATINUM_RING_VIDEO_REMOTE = 'https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/platinum%20ring.mp4';
-export const PLATINUM_RING_VIDEO_LOCAL = '/videos/platinum_ring.mp4';
+// Video Constants
+export const CRAFT_AKSOY_VIDEO_REMOTE = 'https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/CRAFT%20AKSOY.mp4';
+export const CRAFT_AKSOY_VIDEO_LOCAL = '/videos/craft_aksoy.mp4';
+export const TURQUOISE_AKSOY_VIDEO_REMOTE = 'https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/TURQOISE%20AKSOY.mp4';
+export const TURQUOISE_AKSOY_VIDEO_LOCAL = '/videos/turquoise_aksoy.mp4';
+export const PINK_AKSOY_VIDEO_REMOTE = 'https://raw.githubusercontent.com/ryusoi/aksoy-jewelry-media/main/VIDEO/PINK%20AKSOY.mp4';
+export const PINK_AKSOY_VIDEO_LOCAL = '/videos/pink_aksoy.mp4';
 
 interface StorySectionProps {
   currentLanguage: Language;
@@ -21,41 +26,6 @@ export const StorySection: React.FC<StorySectionProps> = ({
   const t = TRANSLATIONS[currentLanguage] || TRANSLATIONS.en;
   const isLight = currentTheme === 'light';
 
-  const videoContainerRef = useRef<HTMLDivElement | null>(null);
-  const [videoParallaxOffset, setVideoParallaxOffset] = useState<number>(0);
-
-  // Smooth scroll parallax calculation for the video
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (videoContainerRef.current) {
-            const rect = videoContainerRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            // Calculate distance from viewport center
-            const elementCenter = rect.top + rect.height / 2;
-            const viewportCenter = windowHeight / 2;
-            const distanceFromCenter = elementCenter - viewportCenter;
-            
-            // Silky smooth parallax translation
-            setVideoParallaxOffset(distanceFromCenter * 0.16);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <section 
       id="aksoy-our-story-section"
@@ -69,33 +39,12 @@ export const StorySection: React.FC<StorySectionProps> = ({
       </div>
 
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
-        {/* Fullscreen Video Background with Scrolling Parallax (Unfiltered, Muted, Looping) */}
-        <div 
-          ref={videoContainerRef}
-          className="relative w-full h-[60vh] sm:h-[75vh] lg:h-[85vh] min-h-[420px] overflow-hidden rounded-3xl border border-[#C5A059]/30 bg-black flex items-center justify-center shadow-[0_12px_48px_rgba(0,0,0,0.85)]"
-        >
-          <div 
-            className="absolute inset-0 w-full h-[120%] -top-[10%] flex items-center justify-center pointer-events-none"
-            style={{
-              transform: `translate3d(0, ${-videoParallaxOffset}px, 0)`,
-              willChange: 'transform',
-            }}
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              disablePictureInPicture
-              controls={false}
-              className="w-full h-full object-cover sm:object-contain block opacity-100 pointer-events-none transform-gpu"
-              aria-hidden="true"
-            >
-              <source src={PLATINUM_RING_VIDEO_LOCAL} type="video/mp4" />
-              <source src={PLATINUM_RING_VIDEO_REMOTE} type="video/mp4" />
-            </video>
-          </div>
-        </div>
+        {/* Fullscreen Craft Video Background with Scrolling Parallax (Unfiltered, Muted, Looping) */}
+        <ParallaxVideoBanner
+          videoLocal={CRAFT_AKSOY_VIDEO_LOCAL}
+          videoRemote={CRAFT_AKSOY_VIDEO_REMOTE}
+          ariaLabel="Craft Aksoy Master Goldsmith Video"
+        />
 
         {/* Top Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -139,6 +88,13 @@ export const StorySection: React.FC<StorySectionProps> = ({
             </p>
           </div>
         </div>
+
+        {/* Fullscreen Turquoise Video Background with Scrolling Parallax (Unfiltered, Muted, Looping) */}
+        <ParallaxVideoBanner
+          videoLocal={TURQUOISE_AKSOY_VIDEO_LOCAL}
+          videoRemote={TURQUOISE_AKSOY_VIDEO_REMOTE}
+          ariaLabel="Turquoise Aksoy Fine Jewelry Video"
+        />
 
         {/* Partners & Founders Feature Card */}
         <div className="p-8 sm:p-12 rounded-3xl border border-[rgba(197,160,89,0.3)] bg-gradient-to-r from-[#1A3C5A]/25 via-[#050B14]/80 to-[#050B14]/95 shadow-2xl backdrop-blur-xl">
@@ -194,6 +150,13 @@ export const StorySection: React.FC<StorySectionProps> = ({
             </p>
           </div>
         </div>
+
+        {/* Fullscreen Pink Aksoy Video Background with Scrolling Parallax (Unfiltered, Muted, Looping) */}
+        <ParallaxVideoBanner
+          videoLocal={PINK_AKSOY_VIDEO_LOCAL}
+          videoRemote={PINK_AKSOY_VIDEO_REMOTE}
+          ariaLabel="Pink Aksoy Masterwork Showcase"
+        />
 
         {/* Mission & Vision Twin Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
