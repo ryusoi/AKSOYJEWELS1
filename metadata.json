@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Aksoy Jewel | Luxury Jewelry Marmaris",
+  "description": "Ultra-luxury dynamic fine jewelry website for Aksoy Jewel in Lotus Beach Hotel, Marmaris, Türkiye. Featuring 7 languages, 3D rotating jewels, Mediterranean yacht visuals, and AI concierge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

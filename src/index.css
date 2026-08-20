@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+/* TT Neoris Webfont Declarations */
+@font-face {
+  font-family: 'TT Neoris';
+  font-style: normal;
+  font-weight: 100;
+  src: local('TT Neoris Thin'), local('TTNeoris-Thin'), local('TT Neoris Pro Thin'), local('TT Neoris Hairline');
+}
+
+@font-face {
+  font-family: 'TT Neoris';
+  font-style: normal;
+  font-weight: 200;
+  src: local('TT Neoris ExtraLight'), local('TTNeoris-ExtraLight'), local('TT Neoris Light');
+}
+
+@font-face {
+  font-family: 'TT Neoris';
+  font-style: normal;
+  font-weight: 300;
+  src: local('TT Neoris Light'), local('TTNeoris-Light'), local('TT Neoris Regular');
+}
+
+@font-face {
+  font-family: 'TT Neoris';
+  font-style: normal;
+  font-weight: 400 700;
+  src: local('TT Neoris'), local('TTNeoris-Regular'), local('TT Neoris Pro');
+}
+
+@layer base {
+  :root {
+    /* TT Neoris Thin Line Typography Stack */
+    --font-neoris-primary: 'TT Neoris', 'TTNeoris-Thin', 'Urbanist', 'Plus Jakarta Sans', 'Outfit', 'Albert Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-neoris-display: 'TT Neoris', 'TTNeoris-Thin', 'Urbanist', 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    --font-neoris-thin: 'TT Neoris', 'TTNeoris-Thin', 'Urbanist', 'Outfit', sans-serif;
+
+    /* Universal mapping for all legacy font tokens to TT Neoris */
+    --font-serif: var(--font-neoris-primary);
+    --font-cinzel: var(--font-neoris-display);
+    --font-cinzel-dec: var(--font-neoris-display);
+    --font-cursive: var(--font-neoris-display);
+    --font-script: var(--font-neoris-display);
+    --font-sans: var(--font-neoris-primary);
+    --font-arabic: var(--font-neoris-primary);
+
+    --color-artistic-gold: #C5A059;
+    --color-artistic-cream: #E0D8C0;
+    --color-artistic-navy: #050B14;
+    --color-artistic-ocean: #1A3C5A;
+  }
+
+  body {
+    font-family: var(--font-neoris-primary);
+    font-weight: 300 !important;
+    font-style: normal !important;
+    letter-spacing: 0.03em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *, *::before, *::after {
+    font-style: normal !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-neoris-display);
+    font-weight: 300 !important;
+    font-style: normal !important;
+    letter-spacing: 0.06em;
+  }
+
+  p, span, a, button, input, textarea, select, label, b, strong, i, em {
+    font-family: var(--font-neoris-primary);
+    font-style: normal !important;
+    font-weight: 300 !important;
+  }
+}
+
+/* Enforce No Bold and No Slanted Fonts Globally */
+.font-bold, 
+.font-semibold, 
+.font-medium, 
+strong, 
+b {
+  font-weight: 300 !important;
+  font-style: normal !important;
+}
+
+.font-light, 
+.font-normal {
+  font-weight: 300 !important;
+  font-style: normal !important;
+}
+
+.font-thin, 
+.font-extralight, 
+.font-neoris-thin {
+  font-weight: 200 !important;
+  font-style: normal !important;
+}
+
+.italic, 
+em, 
+i {
+  font-style: normal !important;
+}
+
+.font-neoris {
+  font-family: var(--font-neoris-primary);
+}
+
+.font-neoris-thin {
+  font-family: var(--font-neoris-thin);
+  font-weight: 200;
+  letter-spacing: 0.05em;
+}
+
+.font-neoris-display {
+  font-family: var(--font-neoris-display);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
+.font-cinzel {
+  font-family: var(--font-neoris-display);
+  letter-spacing: 0.06em;
+}
+
+.font-cinzel-dec {
+  font-family: var(--font-neoris-display);
+  letter-spacing: 0.08em;
+}
+
+.font-cursive {
+  font-family: var(--font-neoris-display);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.font-script {
+  font-family: var(--font-neoris-display);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.font-serif-luxury {
+  font-family: var(--font-neoris-primary);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.font-robotica {
+  font-family: var(--font-neoris-display);
+  letter-spacing: 0.06em;
+}
+
+.font-robotica-body {
+  font-family: var(--font-neoris-primary);
+  letter-spacing: 0.03em;
+}
+
+.font-robotica-thin {
+  font-family: var(--font-neoris-thin);
+  font-weight: 200;
+  letter-spacing: 0.05em;
+}
+
+/* Luxury Gold Border Frame with Corner Jewels */
+.gold-luxury-frame {
+  position: relative;
+  border: 1.5px solid #C5A059;
+  box-shadow: 0 0 15px rgba(197, 160, 89, 0.35), inset 0 0 15px rgba(197, 160, 89, 0.2);
+}
+
+.gold-luxury-frame::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 1px solid rgba(224, 216, 192, 0.4);
+  pointer-events: none;
+}
+
+.gold-text-glow {
+  text-shadow: 0 0 12px rgba(224, 216, 192, 0.6), 0 0 24px rgba(197, 160, 89, 0.4);
+}
+
+.font-arabic-calligraphy {
+  font-family: var(--font-arabic);
+}
+
+/* Artistic Flair: Mediterranean Deep Ocean Night Radial Gradient */
+.med-bg {
+  background: radial-gradient(circle at 50% 120%, #1A3C5A 0%, #081424 45%, #050B14 85%);
+}
+
+.med-bg-subtle {
+  background: radial-gradient(circle at 50% 0%, #102A42 0%, #060E1A 60%, #050B14 100%);
+}
+
+/* Artistic Glassmorphism */
+.artistic-glass {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(224, 216, 192, 0.12);
+}
+
+.artistic-glass-card {
+  background: rgba(8, 18, 32, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.18);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.artistic-glass-card:hover {
+  background: rgba(12, 26, 46, 0.85);
+  border-color: rgba(197, 160, 89, 0.55);
+  box-shadow: 0 12px 35px rgba(5, 11, 20, 0.8), 0 0 25px rgba(197, 160, 89, 0.15);
+}
+
+/* Light Theme Artistic Glass */
+.artistic-glass-light {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+}
+
+/* Artistic Nav Item Left Border Hover Indicator */
+.artistic-nav-item {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.artistic-nav-item:hover {
+  color: #FFFFFF;
+  border-left: 2px solid #C5A059;
+  padding-left: 10px;
+}
+
+/* Shimmer and Light Sweep */
+@keyframes light-sweep {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(450%) rotate(25deg);
+  }
+}
+
+.logo-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.45), rgba(197, 160, 89, 0.5), transparent);
+  animation: light-sweep 4.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Artistic Geometric Rotating Diamond Jewel */
+@keyframes jewel-rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.animate-jewel-rotate {
+  animation: jewel-rotate 20s infinite linear;
+}
+
+/* Floating Animation */
+@keyframes artistic-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-artistic-float {
+  animation: artistic-float 4.5s ease-in-out infinite;
+}
+
+/* Glowing Gold Droplight */
+@keyframes goldGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(197, 160, 89, 0.7));
+  }
+}
+
+.glow-gold {
+  animation: goldGlow 4s ease-in-out infinite;
+}
+
+/* Custom Artistic Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050B14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.85);
+}
+
+/* RTL layout helpers */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .ltr-only {
+  direction: ltr;
+  text-align: left;
+}
+
+[dir="rtl"] .artistic-nav-item:hover {
+  border-left: none;
+  border-right: 2px solid #C5A059;
+  padding-left: 0;
+  padding-right: 10px;
+}
